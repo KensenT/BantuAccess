@@ -39,6 +39,16 @@ class DraftViewController: UIViewController {
         
         self.draftArray.removeAll()
         self.fetchFromCoreData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(DraftViewController.setDynamicTable), name: UIContentSizeCategory.didChangeNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil)
+    }
+    
+    @objc func setDynamicTable(){
+        self.tableView.reloadData()
     }
     
     
@@ -117,6 +127,19 @@ class DraftViewController: UIViewController {
         }
     }
     
+    func checkIntersectingLabel(cell: DraftCell) -> Bool{
+        let schoolX = cell.schoolNameLabel.frame.origin.x + cell.schoolNameLabel.frame.width/2
+        let dateX = cell.dateLabel.frame.origin.x - cell.schoolNameLabel.frame.width/2
+        
+        if (dateX < schoolX)
+        {
+            print("Intersecting labels")
+            return true
+        }
+        
+        return false
+    }
+    
 }
 
 
@@ -133,6 +156,26 @@ extension DraftViewController: UITableViewDataSource, UITableViewDelegate {
         
         draftCell.dateLabel.text = self.draftArray[indexPath.row].timeStamp
         draftCell.schoolNameLabel.text = self.draftArray[indexPath.row].schoolName
+        
+        draftCell.schoolNameLabel.setDynamic(fontFamily: "Helvetica", size: 16, style: "bold", type: .headline)
+        draftCell.dateLabel.setDynamic(fontFamily: "Helvetica", size: 14, style: "", type: .body)
+        
+        draftCell.schoolNameLabel.sizeToFit()
+        draftCell.dateLabel.sizeToFit()
+//        print(draftCell.frame.origin.x)
+        draftCell.dateLabel.frame.origin.x = draftCell.frame.width - draftCell.dateLabel.frame.width - 40
+        
+        
+        if (self.checkIntersectingLabel(cell: draftCell))
+        {
+            draftCell.dateLabel.frame.origin.y = draftCell.schoolNameLabel.frame.origin.y + draftCell.schoolNameLabel.frame.height
+            self.tableView.rowHeight = draftCell.schoolNameLabel.font.lineHeight*2 + 40
+        }
+        else{
+            draftCell.dateLabel.frame.origin.y = draftCell.schoolNameLabel.frame.origin.y + (draftCell.schoolNameLabel.frame.height - draftCell.dateLabel.frame.height)/2
+            self.tableView.rowHeight = draftCell.schoolNameLabel.font.lineHeight + 40
+        }
+        
         draftCell.accessoryType = .disclosureIndicator
         
         return draftCell
