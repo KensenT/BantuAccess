@@ -142,6 +142,16 @@ class HomeViewController: UIViewController {
             destination.currentEvent = self.selectedEvent
         }
     }
+    
+    func getDiff(image: UIImageView, label: UILabel) -> CGFloat
+    {
+        var difference = image.frame.height - label.frame.height
+        if (difference < 0)
+        {
+            difference = difference * -1
+        }
+        return difference/2
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -171,9 +181,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.locationLabel.frame = CGRect(x: cell.locationLabel.frame.origin.x, y: cell.dateLabel.frame.origin.y + cell.dateLabel.font.lineHeight + 10, width: cell.locationLabel.frame.width, height: cell.locationLabel.font.lineHeight + 10)
         
-        cell.calendarIcon.frame = CGRect(x: cell.calendarIcon.frame.origin.x, y: cell.dateLabel.frame.origin.y + cell.dateLabel.font.lineHeight/2, width: cell.calendarIcon.frame.width, height: cell.calendarIcon.frame.height)
+        cell.calendarIcon.frame = CGRect(x: cell.calendarIcon.frame.origin.x, y: cell.dateLabel.frame.origin.y + self.getDiff(image: cell.calendarIcon, label: cell.dateLabel), width: cell.calendarIcon.frame.width, height: cell.calendarIcon.frame.height)
         
-        cell.locationIcon.frame = CGRect(x: cell.locationIcon.frame.origin.x, y: cell.locationLabel.frame.origin.y + cell.locationLabel.font.lineHeight/2, width: cell.locationIcon.frame.width, height: cell.locationIcon.frame.height)
+        cell.locationIcon.frame = CGRect(x: cell.locationIcon.frame.origin.x, y: cell.locationLabel.frame.origin.y + self.getDiff(image: cell.locationIcon, label: cell.locationLabel), width: cell.locationIcon.frame.width, height: cell.locationIcon.frame.height)
         
         self.eventsTableView.rowHeight = k
         

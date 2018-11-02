@@ -38,7 +38,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 Guru Tangerang #TNT4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkF-mm-AVJ">
-                                                    <rect key="frame" x="15" y="150" width="217" height="19"/>
+                                                    <rect key="frame" x="15" y="150" width="345" height="19"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -72,7 +72,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="calendar-1" translatesAutoresizingMaskIntoConstraints="NO" id="56R-le-dNm">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="56R-le-dNm">
                                                     <rect key="frame" x="15" y="175" width="14" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -513,11 +513,12 @@
     </scenes>
     <resources>
         <image name="bookmark" width="75" height="75"/>
+        <image name="calendar" width="14" height="13"/>
         <image name="calendar-1" width="32" height="32"/>
         <image name="dummy" width="5184" height="3456"/>
         <image name="icons8-calendar" width="24" height="24"/>
         <image name="icons8-ticket" width="25" height="25"/>
-        <image name="location" width="24" height="24"/>
+        <image name="location" width="10" height="14"/>
         <image name="share" width="75" height="75"/>
     </resources>
 </document>

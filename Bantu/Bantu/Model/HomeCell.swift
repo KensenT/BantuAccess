@@ -24,6 +24,12 @@ class HomeCell: UITableViewCell {
     
     func setCell(event: Event){
         self.eventImageView.image = event.img
+        
+        self.calendarIcon.adjustsImageSizeForAccessibilityContentSizeCategory = false
+        self.calendarIcon.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        self.locationIcon.adjustsImageSizeForAccessibilityContentSizeCategory = false
+        self.locationIcon.adjustsImageSizeForAccessibilityContentSizeCategory = true
+
         self.eventTitleLabel.text = event.eventName
         self.eventTitleLabel.setDynamic(fontFamily: "Helvetica", size: 16, style: "bold", type: .headline)
         self.dateLabel.text = "\(event.startDate.beautifyDate()) - \(event.endDate.beautifyDate())"
